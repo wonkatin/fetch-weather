@@ -5,7 +5,6 @@ Let's use our new-found react skills to create a weather app!
 **You will need:**
 
 * Fetch (built-in to JavaScript) or axios (3rd party, remember to `npm install axios`)
-* Temperature conversion functions
 * Create forms that store data with local state
 
 ## Implement the Fetch API
@@ -39,8 +38,6 @@ On your `Weather` page, ask the user to input a zip code.
 
 - You can learn more about forms [here](https://facebook.github.io/react/docs/forms.html).
   - When this event fires, take the `event.target.value` and `fetch()` from the OpenWeather API.
-  
-- Hint!! The `value` of your text fields need to be 'controlled' in your components state
 
 - Use the response from the API to display the current temperature, the high and low temperatures, the current weather description, and the name of the city.
   - Note: Our solution uses Fahrenheit. You're free to use Celsius or Kelvins if you'd like.
@@ -59,14 +56,14 @@ Here is a functional Weather component starter:
 import { Component } from 'react';
 
 class Weather extends Component {
-
   state = {
     // Your required states here
   }
 
   handleChange = (event) => {
-    this.setState({zipcode: event.target.value});
-    console.log('Your zip code is' + this.state.zipcode);
+    this.setState({ zipcode: event.target.value }, () => {
+      console.log('Your zip code is', this.state.zipcode);
+    });
   }
 
   handleSubmit = (event) => {
@@ -78,15 +75,17 @@ class Weather extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        <p>
-          { /* Display weather information here */ }
-        </p>
-        <label>
-          Please enter your zip code for the weather:
-          <input type="text" onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Get my forecast!" />
-      </form>
+          <label htmlFor="zipcode">Please enter your zip code for the weather:</label>
+          <input 
+            id="zipcode" 
+            type="text" 
+            onChange={this.handleChange} 
+          />
+          <input type="submit" value="Get my forecast!" />
+        </form>
+        <div>
+          { /* Display weather information here */}
+        </div>
       </div>
     )
   }
@@ -102,13 +101,16 @@ export default Weather;
 <details>
     <summary>Hint 1</summary> 
     <br />
-    You'll only need to create and implement the `Weather` component. Nothing else needs to change in whichever existing app you created other than hooking up the component to a route with your router!
+    You'll only need to create and implement the `Weather` component.
 </details>
-
 <details>
-    <summary>Hint 2</summary> 
-    <br />
-    To see how to handle the form, check out the skeleton code.
+  <summary>Hint 2</summary>
+  <br />
+  The `value` of your text fields need to be 'controlled' in your components state
+<details>
+  <summary>Hint 3</summary>
+  <br />
+  The temperature reading comes in units of Kelvin by default - check the API for the `units` parameter to get the reading in Farenheit or Celcius
 </details>
 
 ## Bonus
