@@ -107,6 +107,7 @@ export default Weather;
   <summary>Hint 2</summary>
   <br />
   The `value` of your text fields need to be 'controlled' in your components state
+</details>
 <details>
   <summary>Hint 3</summary>
   <br />
