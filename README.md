@@ -1,4 +1,4 @@
-## ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Fetch the Weather with Hooks
+## ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Fetch the Weather
 
 Let's use our new-found react skills to create a weather app!
 
