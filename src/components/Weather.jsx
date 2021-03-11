@@ -4,14 +4,16 @@ export default class Weather extends Component {
     state = {
         zipCode: '',
         temp: '',
+        weather: '',
         city: ''
     }
     fetchWeather = async () => {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${this.state.zipCode},us&units=imperial&appid=052f26926ae9784c2d677ca7bc5dec98`)
         const json = await response.json()
         this.setState({
-            zipCode: this.state.zipCode,
-            temp: (Math.floor(json.main.temp)),
+            // zipCode: this.state.zipCode,
+            temp: `${(Math.floor(json.main.temp))}°`,
+            weather: json.weather[0].description,
             city: json.name
         })
     }
@@ -42,6 +44,7 @@ export default class Weather extends Component {
                 </form>
                 <h3>{this.state.city}</h3>
                 <h3>{this.state.temp}</h3>
+                <h4>{this.state.weather}</h4>
             </div>
         )
     }
